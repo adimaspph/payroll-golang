@@ -3,8 +3,8 @@ package models
 import "fmt"
 
 type Date struct {
-	Month int `json:"month"`
-	Year  int `json:"year"`
+	Month int `json:"month" validate:"required"`
+	Year  int `json:"year" validate:"required"`
 }
 
 func (d Date) String() string {

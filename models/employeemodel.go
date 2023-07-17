@@ -3,11 +3,11 @@ package models
 import "fmt"
 
 type Employee struct {
-	IdEmployee   string `json:"id"`
-	NameEmployee string `json:"name"`
-	Gender       string `json:"gender"`
-	Grade        int    `json:"grade"`
-	IsMarried    bool   `json:"is-married"`
+	IdEmployee   string `json:"id" validate:"required"`
+	NameEmployee string `json:"name" validate:"required"`
+	Gender       string `json:"gender" validate:"required"`
+	Grade        int    `json:"grade" validate:"required"`
+	IsMarried    bool   `json:"is-married" validate:"required"`
 }
 
 func (e Employee) String() string {

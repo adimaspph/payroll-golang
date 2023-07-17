@@ -1,9 +1,9 @@
 package models
 
 type Company struct {
-	EmployeeList     []Employee     `json:"employee-list,omitempty"`
-	PayrollList      []Payroll      `json:"payroll-list,omitempty"`
-	SalaryMatrixList []SalaryMatrix `json:"salary-matrix-list,omitempty"`
+	EmployeeList     []Employee     `json:"employee-list,omitempty" validate:"required"`
+	PayrollList      []Payroll      `json:"payroll-list,omitempty" validate:"required"`
+	SalaryMatrixList []SalaryMatrix `json:"salary-matrix-list,omitempty" validate:"required"`
 }
 
 // Soal 1

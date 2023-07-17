@@ -5,6 +5,7 @@ import (
 	"github.com/adimaspph/payroll-golang/DTO"
 	"github.com/adimaspph/payroll-golang/models"
 	"github.com/adimaspph/payroll-golang/usecase"
+	"github.com/go-playground/validator/v10"
 	"io"
 	"net/http"
 	"os"
@@ -34,6 +35,13 @@ func Employee(w http.ResponseWriter, r *http.Request) {
 		var employee models.Employee
 
 		err := json.NewDecoder(r.Body).Decode(&employee)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusBadRequest)
+			return
+		}
+
+		validate := validator.New()
+		err = validate.Struct(employee)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusBadRequest)
 			return
@@ -82,6 +90,14 @@ func SalaryMatrix(w http.ResponseWriter, r *http.Request) {
 		var salary models.SalaryMatrix
 
 		err := json.NewDecoder(r.Body).Decode(&salary)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusBadRequest)
+			return
+		}
+
+		// Validation
+		validate := validator.New()
+		err = validate.Struct(salary)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusBadRequest)
 			return
@@ -138,6 +154,14 @@ func Payroll(w http.ResponseWriter, r *http.Request) {
 		var payrollRequest DTO.PayrollRequest
 
 		err := json.NewDecoder(r.Body).Decode(&payrollRequest)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusBadRequest)
+			return
+		}
+
+		// Validation
+		validate := validator.New()
+		err = validate.Struct(payrollRequest)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusBadRequest)
 			return
