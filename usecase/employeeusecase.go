@@ -5,6 +5,7 @@ import (
 	"github.com/adimaspph/payroll-golang/database"
 	"github.com/adimaspph/payroll-golang/models"
 	"strconv"
+	"sync"
 )
 
 func AddEmployee(employee models.Employee) (*models.Employee, error) {
@@ -16,7 +17,15 @@ func AddEmployee(employee models.Employee) (*models.Employee, error) {
 
 	employee.IdEmployee = "ID-" + strconv.Itoa(len(company.EmployeeList))
 
-	company.EmployeeList = append(company.EmployeeList, employee)
+	var wg sync.WaitGroup
+
+	wg.Add(1)
+	go func() {
+		company.EmployeeList = append(company.EmployeeList, employee)
+		wg.Done()
+	}()
+
+	wg.Wait()
 
 	err = database.WriteCompany(company)
 	if err != nil {

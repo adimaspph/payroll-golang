@@ -1,7 +1,7 @@
 package models
 
 type SalaryMatrix struct {
-	IdSalary     string  `json:"id" validate:"required"`
+	IdSalary     string  `json:"id"`
 	Grade        int     `json:"grade" validate:"required"`
 	BasicSalary  float64 `json:"basic-salary" validate:"required"`
 	PayCut       float64 `json:"pay-cut" validate:"required"`

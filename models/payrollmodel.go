@@ -1,7 +1,7 @@
 package models
 
 type Payroll struct {
-	IdPayroll        string    `json:"id-payroll" validate:"required"`
+	IdPayroll        string    `json:"id-payroll" `
 	BasicSalary      float64   `json:"basic-salary" validate:"required"`
 	PayCut           float64   `json:"pay-cut" validate:"required"`
 	AdditionalSalary float64   `json:"additional-salary" validate:"required"`
